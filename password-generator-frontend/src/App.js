@@ -17,20 +17,28 @@ function App() {
       }
   };
 
+  // Fonction pour copier le mot de passe dans le presse-papiers
+  const handleCopy = () => {
+    navigator.clipboard.writeText(password)
+      .then(() => {
+        alert("Mot de passe copié dans le presse-papiers !");
+      })
+      .catch((error) => {
+        console.error("Erreur lors de la copie : ", error);
+      });
+  };
+
   return (
-    <div>
+    <div className="content">
       <h1>Générateur de Mot de Passe</h1>
-      <div>
-        <label>Longueur: </label>
-        <input
-          type="number"
-          value={length}
-          onChange={(e) => setLength(e.target.value)}
-        />
-      </div>
       <button onClick={generatePassword}>Générer</button>
-      <div>
-        <h2>Mot de Passe: {password}</h2>
+      <div className="password_content">
+        <h2>Mot de Passe:</h2>
+        <h2>{password}</h2>
+        {/* Bouton pour copier le mot de passe */}
+        <button onClick={handleCopy} disabled={!password}>
+          Copier
+        </button>
       </div>
     </div>
   );
