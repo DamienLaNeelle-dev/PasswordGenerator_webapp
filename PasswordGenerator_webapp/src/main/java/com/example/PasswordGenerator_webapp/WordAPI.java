@@ -1,43 +1,42 @@
 package com.example.PasswordGenerator_webapp;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+
+import java.io.InputStream;
+import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.Random;
 
 public class WordAPI {
 
+    private static final Random RANDOM = new Random();
+
     public static String getRandomWord() {
-        String urlString = "https://random-word-api.herokuapp.com/word";
-
-        try{
-            URL url = new URL(urlString);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
-
-            BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            String inputLine;
-            StringBuilder response = new StringBuilder();
-
-            while ((inputLine = reader.readLine()) != null) {
-                response.append(inputLine);
-            }
-            reader.close();
-
-            String json = response.toString();
-            System.out.println("API Response: " + json);  // Affichage de la réponse brute de l'API
-
-            return capitalizeFirstLetter(json.substring(2, json.length() - 2));
-        } catch (Exception e) {
-            e.printStackTrace();
+        List<String> words = loadWords();
+        if (words.isEmpty()) {
             return null;
         }
+        return words.get(RANDOM.nextInt(words.size())); // Sélectionne un mot au hasard
     }
 
+    private static List<String> loadWords() {
+        List<String> words = new ArrayList<>();
 
-    private static String capitalizeFirstLetter(String word) {
-        if (word == null || word.isEmpty()) {
-            return word;
+        try (InputStream inputStream = WordAPI.class.getClassLoader().getResourceAsStream("mots.txt")) {
+            if (inputStream == null) {
+                throw new IOException("Le fichier mots.txt est introuvable dans les ressources.");
+            }
+
+            // Utiliser un scanner pour lire chaque ligne du fichier
+            try (Scanner scanner = new Scanner(inputStream)) {
+                while (scanner.hasNextLine()) {
+                    words.add(scanner.nextLine().trim());
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-        return word.substring(0, 1).toUpperCase() + word.substring(1);
+
+        return words;
     }
 }

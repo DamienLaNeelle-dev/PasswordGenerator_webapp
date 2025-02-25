@@ -22,7 +22,7 @@ public class PasswordController {
             return "La longueur du mot de passe doit être supérieure ou égale à 8.";
         }
 
-        // Récupérer les mots aléatoires via l'API
+        // Récupérer les mots aléatoires depuis le fichier mots.txt
         String word1 = WordAPI.getRandomWord();
         String word2 = WordAPI.getRandomWord();
 
@@ -35,7 +35,7 @@ public class PasswordController {
         String number = String.valueOf(NUMBERS.charAt(RANDOM.nextInt(NUMBERS.length())));
 
         // Ajouter entre 1 et 3 caractères spéciaux aléatoires
-        int numSpecials = RANDOM.nextInt(2) + 1;
+        int numSpecials = RANDOM.nextInt(3) + 1;
         StringBuilder specials = new StringBuilder();
         for (int i = 0; i < numSpecials; i++) {
             specials.append(SPECIALS.charAt(RANDOM.nextInt(SPECIALS.length())));
