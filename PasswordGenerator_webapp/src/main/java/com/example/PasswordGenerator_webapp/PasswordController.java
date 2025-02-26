@@ -35,7 +35,7 @@ public class PasswordController {
         String number = String.valueOf(NUMBERS.charAt(RANDOM.nextInt(NUMBERS.length())));
 
         // Ajouter entre 1 et 3 caractères spéciaux aléatoires
-        int numSpecials = RANDOM.nextInt(3) + 1;
+        int numSpecials = RANDOM.nextInt(2) + 1;
         StringBuilder specials = new StringBuilder();
         for (int i = 0; i < numSpecials; i++) {
             specials.append(SPECIALS.charAt(RANDOM.nextInt(SPECIALS.length())));
