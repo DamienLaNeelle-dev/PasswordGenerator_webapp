@@ -8,17 +8,24 @@ function App() {
   const BACKEND_URL = 'https://spatial-lisa-damienrepos-0c9b5e3f.koyeb.app';
 
   const generatePassword = async () => {
-      try {
-          const response = await fetch(`${BACKEND_URL}/generate-password?length=${length}`);
-          if (!response.ok) {
-              throw new Error('Network response was not ok');
-          }
-          const data = await response.text();
-          setPassword(data);
-      } catch (error) {
-          console.error('Failed to fetch:', error);
-      }
+     try {
+         console.log("Sending request to backend...");
+
+         const response = await fetch(`${BACKEND_URL}/generate-password?length=${length}`);
+         console.log("Response status:", response.status);  // Log de la réponse
+
+         if (!response.ok) {
+             throw new Error('Network response was not ok');
+         }
+
+         const data = await response.text();
+         console.log("Received password:", data);  // Vérifie ce qui est reçu
+         setPassword(data);
+     } catch (error) {
+         console.error('Failed to fetch:', error);
+     }
   };
+
 
   // Fonction pour copier le mot de passe dans le presse-papiers
   const handleCopy = () => {
