@@ -3,7 +3,6 @@ package com.example.PasswordGenerator_webapp;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +16,6 @@ public class PasswordController {
     private static final String SPECIALS = "!@#$%^&*()-_=+";
     private static final Random RANDOM = new Random();
 
-    @CrossOrigin(origins = "https://spatial-lisa-damienrepos-0c9b5e3f.koyeb.app")
     @GetMapping("/generate-password")
     public String generatePassword(@RequestParam int length) {
         if (length < 8) {

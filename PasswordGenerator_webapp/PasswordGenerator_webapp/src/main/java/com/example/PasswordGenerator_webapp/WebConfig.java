@@ -7,11 +7,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
+
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("https://spatial-lisa-damienrepos-0c9b5e3f.koyeb.app")  // Ajoute l'URL de ton frontend
-                .allowedMethods("GET", "POST", "PUT", "DELETE")
-                .allowedHeaders("*");
+        registry.addMapping("/**").allowedOrigins("http://localhost:3000");
     }
 }

@@ -1,0 +1,38 @@
+@font-face{
+    font-family: "BricolageGrotesque";
+    src: url("./fonts/BricolageGrotesque.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: BricolageGrotesque;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.password_content{
+    text-align: center;
+}
+
+button{
+    font-family: BricolageGrotesque;
+    font-size: 1.2rem;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #0097b2;
+    border: solid 1px #664147;
+    color: #664147;
+}
