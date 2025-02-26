@@ -4,9 +4,12 @@ function App() {
   const [password, setPassword] = useState('');
   const [length, setLength] = useState(8);
 
+  // Mettre à jour l'URL pour utiliser ton backend sur Koyeb
+  const BACKEND_URL = 'https://spatial-lisa-damienrepos-0c9b5e3f.koyeb.app';
+
   const generatePassword = async () => {
       try {
-          const response = await fetch(`http://localhost:8080/generate-password?length=${length}`);
+          const response = await fetch(`${BACKEND_URL}/generate-password?length=${length}`);
           if (!response.ok) {
               throw new Error('Network response was not ok');
           }
