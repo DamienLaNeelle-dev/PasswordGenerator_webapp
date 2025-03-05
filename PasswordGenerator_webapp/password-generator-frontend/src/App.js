@@ -6,7 +6,7 @@ function App() {
 
   const generatePassword = async () => {
       try {
-          const response = await fetch(`http://localhost:8080/generate-password?length=${length}`);
+          const response = await fetch('https://spatial-lisa-damienrepos-0c9b5e3f.koyeb.app');
           if (!response.ok) {
               throw new Error('Network response was not ok');
           }
